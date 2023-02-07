@@ -4,7 +4,7 @@ const {NotFoundError} = require('../errors')
 
 const launches = new Map();
 
-let latestFlightNumber = 100;
+const defaultFlightNumber = 100;
 
 const launch = {
   flightNumber: 100,
@@ -23,6 +23,14 @@ saveLaunch(launch)
 
 function existsLaunchWithId(launchId) {
   return launches.has(launchId)
+}
+
+async function getLatestFlightNo() {
+  const latestLaunch = await Launch.findOne().sort('-flightNumber')
+  if(!latestLaunch) {
+    return defaultFlightNumber
+  }
+  return latestLaunch
 }
 
 async function getAllLauches() {
