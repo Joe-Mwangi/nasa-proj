@@ -21,7 +21,7 @@ const httpAddNewLaunch = async (req, res) => {
     if(isNaN(launch.launchDate)) {
         return res.status(400).json({msg: 'Invalid launch date'})
     }
-    addNewLaunch(launch)
+    await addNewLaunch(launch)
     return res.status(201).json({launch, msg: 'Item has been created'})
 }
 

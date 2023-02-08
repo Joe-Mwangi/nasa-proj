@@ -30,7 +30,7 @@ async function getLatestFlightNo() {
   if(!latestLaunch) {
     return defaultFlightNumber
   }
-  return latestLaunch
+  return latestLaunch.flightNumber
 }
 
 async function getAllLauches() {
@@ -53,17 +53,15 @@ async function saveLaunch(launch) {
     })
 }
 
-function addNewLaunch(launch) {
-  latestFlightNumber++;
-  launches.set(
-    latestFlightNumber,
-    Object.assign(launch, {
-      flightNumber: latestFlightNumber,
-      success: true,
-      upcoming: true,
-      customers: ["STARLINK", "NASA"],
-    })
-  );
+async function addNewLaunch(launch) {
+  const latestFlightNumber = await getLatestFlightNo() +  1 
+  const newLaunch = Object.assign(launch, {
+    flightNumber: latestFlightNumber,
+    success: true,
+    upcoming: true,
+    customers: ['STARLINK', 'NASA'],
+  })
+  await saveLaunch(newLaunch)
 }
 
 function abortLaunchById(launchId) {
