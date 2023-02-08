@@ -19,7 +19,7 @@ const LaunchesSchema = new mongoose.Schema({
     type: Boolean,
     required: [true, 'upcoming missing']
   },
-  customer: {
+  customers: {
     type: [String],
     required: [true, 'Customer details missing']
   },
