@@ -1,10 +1,16 @@
 const request = require('supertest')
 const app = require('../../app')
-const connectDB = require('../../db/connect')
+const {
+    connectDB, 
+    disconnectDB
+} = require('../../db/connect')
 
 describe('Launches API test', () => {
     beforeAll(async () => {
         await connectDB()
+    })
+    afterAll(async () => {
+        await disconnectDB()
     })
     describe('Test GET /launches', () => {
         test('It should respond with 200 success', async () => {
@@ -19,18 +25,18 @@ describe('Launches API test', () => {
         const completeLaunchData = {
             mission: 'NASA',
             rocket: 'NCC 494F',
-            target: 'Kepler-e54',
+            target: 'Kepler-62 f',
             launchDate: 'January 4, 2024'
         }
         const LaunchDataWithoutDate = {
             mission: 'NASA',
             rocket: 'NCC 494F',
-            target: 'Kepler-e54',
+            target: 'Kepler-62 f',
         }
         const launchDataWithInvalidDate = {
             mission: 'NASA',
             rocket: 'NCC 494F',
-            target: 'Kepler-e54',
+            target: 'Kepler-62 f',
             launchDate: 'Hello'
         }
     
