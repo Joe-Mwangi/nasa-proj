@@ -13,7 +13,7 @@ const port = process.env.PORT || 8000
 
 async function startServer() {
     await loadPlanetsData()
-    await connectDB('mongodb://localhost/nasa_proj')
+    await connectDB()
     server.listen(port, () => 
         console.log(`Server listening on port: ${port}...`))
 }

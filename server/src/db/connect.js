@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-function connectDB(url) {
-    return mongoose.connect(url)
+async function connectDB() {
+    return await mongoose.connect("mongodb://localhost/nasa_proj")
 }
 
 mongoose.connection.once('open', () => {
