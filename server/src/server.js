@@ -1,7 +1,7 @@
 const http = require('http')
 const app = require('./app')
 const {loadPlanetsData} = require('./models/planets.model') 
-const connectDB = require('./db/connect')
+const {connectDB} = require('./db/connect')
 
 const server = http.createServer(app)
   
