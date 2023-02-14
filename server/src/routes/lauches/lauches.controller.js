@@ -7,11 +7,13 @@ const {
 
 const {
     getPagination,
+    getSort
 } = require('../../services/query')
 
 const httpGetAllLauches = async (req, res) => {
     const {skip, limit} = getPagination(req.query)
-    const launches = await getAllLauches(limit, skip)
+    const sort = getSort(req.query)
+    const launches = await getAllLauches(limit, skip, sort)
     return res.status(200).json({
         count: launches.length,
         launches

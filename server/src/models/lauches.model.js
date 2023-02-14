@@ -96,10 +96,10 @@ async function getLatestFlightNo() {
   return latestLaunch.flightNumber
 }
 
-async function getAllLauches(limit, skip) {
+async function getAllLauches(limit, skip, sort) {
   return await Launch.find({}, {
     '_id': 0, '__v': 0
-  }).limit(limit).skip(skip)
+  }).sort({flightNumber: sort}).limit(limit).skip(skip)
 }
 
 async function saveLaunch(launch) {

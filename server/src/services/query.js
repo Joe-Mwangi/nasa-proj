@@ -1,5 +1,6 @@
 const defaultLimit = 0
 const defaultPage = 1
+const defaultSort = '1'
 
 function getPagination(query) {
     const limit = Math.abs(query.limit) || defaultLimit
@@ -12,6 +13,12 @@ function getPagination(query) {
     }
 }
 
+function getSort(query) {
+    const sort = query.sort || defaultSort
+    return sort
+}
+
 module.exports = {
     getPagination,
+    getSort
 }
