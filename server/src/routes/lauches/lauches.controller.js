@@ -5,8 +5,17 @@ const {
     existsLaunchWithId,
 } = require('../../models/lauches.model')
 
+const {
+    getPagination,
+} = require('../../services/query')
+
 const httpGetAllLauches = async (req, res) => {
-    return res.status(200).json(await getAllLauches()) 
+    const {skip, limit} = getPagination(req.query)
+    const launches = await getAllLauches(limit, skip)
+    return res.status(200).json({
+        count: launches.length,
+        launches
+    }) 
 }
 
 const httpAddNewLaunch = async (req, res) => {
