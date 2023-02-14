@@ -15,8 +15,8 @@ app.use(cors({
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '..', 'public')))
-app.use(errorHandler)
 app.use('/v1', api)
+app.use(errorHandler)
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
