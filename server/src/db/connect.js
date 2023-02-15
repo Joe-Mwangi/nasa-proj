@@ -9,7 +9,7 @@ mongoose.connection.on('error', (err) => {
 })
 
 async function connectDB() {
-    return await mongoose.connect("mongodb://localhost/nasa_proj")
+    return await mongoose.connect(process.env.MONGO_URI)
 }
 
 async function disconnectDB() {
