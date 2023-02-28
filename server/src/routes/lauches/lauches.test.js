@@ -4,10 +4,12 @@ const {
     connectDB, 
     disconnectDB
 } = require('../../db/connect')
+const { loadPlanetsData } = require('../../models/planets.model')
 
 describe('Launches API test', () => {
     beforeAll(async () => {
         await connectDB()
+        await loadPlanetsData()
     })
     afterAll(async () => {
         await disconnectDB()
